@@ -18,7 +18,7 @@ $j=0;
 
 $updated_at=date('o-m-d');
 
-$sql = "UPDATE plantation SET quantity='$j', updated_at='$updated_at' WHERE code='$code' and description='$desc'";
+$sql = "UPDATE plantation SET  updated_at='$updated_at' WHERE code='$code' and description='$desc'";
 
 if ($conn->query($sql) === TRUE) {
 echo "Record updated successfully";

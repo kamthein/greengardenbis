@@ -26,6 +26,7 @@
 
 
   <a id="userlink" href="createuser.php">Créer un utilisateur</a>
+  <a id="userlink" href="vente.php">Acceder au vente</a>
 
 
   <?php
@@ -41,6 +42,9 @@ if($_GET['user']=='error'){
 }
 
 ?>
+<br>
+
+
 
 
 </body>

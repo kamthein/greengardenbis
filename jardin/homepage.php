@@ -91,6 +91,8 @@ echo '<a href="affichageprofil.php?code='.$code.'">Afficher profil</a>';
 
 <a href="calendar2.php">Calendrier</a>
 
+
+<a href="graph.php">Graphique</a>
 <br>
 <br>
 <br>
@@ -774,9 +776,9 @@ $conn->close();
     poid
   </td>
 
-  <td>
+  <!-- <td>
    quantité
-  </td>
+  </td> -->
   <td>
     Prix par kg
   </td>
@@ -871,14 +873,14 @@ echo " grammes ";
 
 ?>
 </td>
-<td>
+
 <?php
 
 
-echo $row["qtypiece"];
+//echo $row["qtypiece"];
 
 ?>
-</td>
+
 <td>
 <?php
 
