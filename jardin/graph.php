@@ -61,6 +61,9 @@ session_start();
 
 $code=$_SESSION["code"];
 
+$prixdepenses=0;
+$prixrecolte=0;
+
  
 
 if(!empty($_GET['year'])){
@@ -72,9 +75,7 @@ $year=$_GET['year'];
 
 $dateselect= $year.'-'.$month;
 
-$prixdepenses=0;
 
-$prixrecolte=0;
 
 
 for($i=0; $i<32; $i++){
@@ -149,6 +150,8 @@ $prixrecolte=$prixrecolte+($row["qtygramme"]/1000)*$row["prixparkg"];
 
 }
 
+
+
 ?>
 <div id="wrapred">
 <div id="red"></div>
@@ -186,7 +189,13 @@ $prixrecolte=$prixrecolte+($row["qtygramme"]/1000)*$row["prixparkg"];
 
 var variableRecuperee2 = <?php echo $prixrecolte;
   ?>;
+  if(variableRecuperee==0&&variableRecuperee2==0){
+    document.getElementById("vente").style.height="0px";
 
+    document.getElementById("depense").style.height="0px";
+  }
+  
+  else {
 if(variableRecuperee>variableRecuperee2){
 
 var dep=(400*variableRecuperee2)/variableRecuperee;
@@ -205,6 +214,8 @@ var dif=400-dep;
 document.getElementById("depense").style.marginTop=dif+"px";
 
 }
+
+  }
 
 
 </script>

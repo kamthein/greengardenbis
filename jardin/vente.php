@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Jardins</title>
+  <title>Vente</title>
 
 </head>
 
@@ -44,7 +44,7 @@ if ($result2->num_rows > 0) {
   // output data of each row
   while($row2 = $result2->fetch_assoc()) {
 
-    if($row2["conso"]==$i){
+    if($row2["conso"]==$i&&$row2["qtygramme"]>0){
         echo ' -- Disponible';
     }
 
@@ -81,7 +81,8 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
 
  
-
+if($row["qtygramme"]>0)
+{
 
 // Get image data from database 
 $result2 = $conn->query("SELECT image, code, codephoto FROM images ORDER BY id DESC"); 
@@ -122,7 +123,12 @@ echo $row["email"];
 
 
 
+?>
+<br>
+<a href="ventetoututi.php?cod=<?php echo $row['code']?>">Tous les produits de l'utilisateur</a>
 
+
+<?php
 
 
 
@@ -133,7 +139,7 @@ echo '<hr>';
 
   }
 }
-
+}
 
 
 }
