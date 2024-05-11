@@ -3,9 +3,9 @@
 
 
 
-$servername = "localhost";
+$servername = "host-1";
     $username = "root";
-    $password = "";
+    $password = "root";
     $dbname = "tutocalendar";
     
     // Create connection

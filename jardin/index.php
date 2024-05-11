@@ -1,19 +1,6 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>Jardins</title>
-
-</head>
-
-
-
-
-
-
-<body>
-
-
+<?php
+require '../views/header.php';
+?>
 
 <form action="userverif.php" method="get" class="form-example">
      <div id="finputs">

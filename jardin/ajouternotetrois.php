@@ -1,15 +1,7 @@
 <?php 
 
-
 session_start();
-
 $code=$_SESSION["code"];
-
-
-
-
-
-
 
 
 if(!empty($_GET['description'])){

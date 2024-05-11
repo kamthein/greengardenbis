@@ -1,32 +1,7 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>Jardins depenses</title>
-
-</head>
-
-
-
-
-
-
-<body>
-
-
-
-
 <?php
-
+require '../views/header.php';
 require 'dbConfig.php'; 
-
-
 session_start();
-
-
-
-
-
 $code=$_SESSION['code'];
 
 ?>

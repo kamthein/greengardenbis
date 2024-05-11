@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
+$servername = "host-1";
 $username = "root";
-$password = "";
+$password = "root";
 $dbname = "jardin";
 
 // Create connection
@@ -10,6 +10,4 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } 
-
-
 ?>

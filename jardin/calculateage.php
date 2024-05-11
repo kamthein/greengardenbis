@@ -4,7 +4,7 @@
 <head>
     <title>Age Calculator</title>
     <link rel="stylesheet"
-          href="style.css" />
+          href="css/style.css" />
 </head>
  
 <body>
@@ -67,7 +67,7 @@ if ($result2->num_rows > 0) {
         </button>
         <br />
         <div id="currentAge"></div>
-        <script src="script.js"></script>
+        <script src="js/script.js"></script>
     </div>
 </body>
  

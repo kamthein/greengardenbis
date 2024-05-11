@@ -1,29 +1,8 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>Jardins note</title>
-
-</head>
-
-
-
-
-
-
-<body>
-
-
-
 <?php
+require '../views/header.php';
 session_start();
-
 $code=$_SESSION["code"];
 
-?>
-
-
-<?php
 
   if(isset($_GET['codephoto'])) {
     $photocode=$_GET['codephoto'];

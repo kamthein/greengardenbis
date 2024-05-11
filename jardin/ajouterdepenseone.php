@@ -1,42 +1,15 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>Jardins depenses</title>
-
-</head>
-
-
-
-
-
-
-<body>
-
-
-
-
 <?php
-
-require 'dbConfig.php'; 
-
-
-session_start();
-
-
-
-
-
-$code=$_SESSION['code'];
-
+    require '../views/header.php';
+    require 'dbConfig.php'; 
+    session_start();
+    $code=$_SESSION['code'];
 ?>
-
-
 
 <form action="ajouterdepenseone.php" method="post" enctype="multipart/form-data">
     <label>Select Image File:</label>
      
     <input type="file" name="image">
+    <br/>
     <input type="submit" name="submit" value="Upload">
 </form>
 

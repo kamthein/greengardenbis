@@ -1,37 +1,11 @@
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>Jardins home</title>
-  <link href="stylehome.css" rel="stylesheet">
-</head>
-
-
-
-
-
-
-<body>
-
-
-
-
-
 <?php
-
+require '../views/header.php';
 require 'dbConfig.php'; 
-
-
 session_start();
 
-
-
 if(!empty($_GET['code'])){
-
-    
     $code=$_GET['code'];
     $_SESSION["code"]=$code;
-
 }
 
 $sql = "SELECT nickname, code FROM user";
@@ -52,11 +26,7 @@ echo "0 results";
 }
 $conn->close();
 
-
-
-
-echo "bienvenue ".$nickname. " !";
-
+echo "Bienvenue ".$nickname. " !";
 echo '<a href="affichageprofil.php?code='.$code.'">Afficher profil</a>';
 
 ?>
@@ -78,58 +48,32 @@ echo '<a href="affichageprofil.php?code='.$code.'">Afficher profil</a>';
       <p class="status error">Image(s) not found...</p> 
   <?php } ?>
 
-
-<a href="ajouterplantationone.php">Ajouter une plantation</a>
-
-<a href="ajouterdepenseone.php">Ajouter une depense</a>
-
-<a href="ajouterparcelleone.php">Ajouter une parcelle</a>
-
-<a href="ajoutertraitementone.php">Ajouter un traitement</a>
-
-<a href="ajouternoteone.php">Ajouter une note</a>
-
-<a href="calendar2.php">Calendrier</a>
-
-
-<a href="graph.php">Graphique</a>
-<br>
-<br>
-<br>
-<br>
-
+  <ul>
+    <li><a href="ajouterparcelleone.php">Ajouter une parcelle</a></li>
+    <li><a href="ajouterdepenseone.php">Ajouter une depense</a></li>
+    <li><a href="ajouterplantationone.php">Ajouter une plantation</a></li>
+    <li><a href="ajoutertraitementone.php">Ajouter un traitement</a></li>
+    <li><a href="ajouternoteone.php">Ajouter une note</a></li>
+    <li><a href="calendar2.php">Calendrier</a></li>
+    <li><a href="graph.php">Graphique</a></li>
+  </ul>
 
 <hr>
-
-
-<p>Parcelles:</p>
+<h1>Parcelles:</h1>
 
 <table>
 
 <tr id="parcellehead">
-  <td>
-    image
-  </td>
-  <td>
-    nom
-  </td>
-  <td>
-    description
-  </td>
-  <td>
-    exposition
-  </td>
-  <td>
-    date crée
-  </td>
-
-
-  </tr>
+  <td>image</td>
+  <td>nom</td>
+  <td>description</td>
+  <td>exposition</td>
+  <td>date création</td>
+</tr>
 
 <?php
 
 require 'dbConfig.php'; 
-
 $sql2 = "SELECT code, name, description, expositionId, created_at, updated_at, Exposition, codeimgparcelle FROM parcelle, exposition WHERE code='$code' AND exposition.Id= parcelle.expositionId";
 $result2 = $conn->query($sql2);
 
@@ -138,112 +82,63 @@ if ($result2->num_rows > 0) {
   while($row = $result2->fetch_assoc()) {
 
 /* if($row["code"]==$code){ */
-
-
-
-
   require 'dbConfig.php'; 
   // Get image data from database 
   $result3 = $conn->query("SELECT image, code, codephoto FROM images ORDER BY id DESC"); 
   ?>
   
-
-
 <tr>
-<td>
-
-  <!-- Display images with BLOB data from database -->
-  <?php if($result3->num_rows > 0){ ?> 
-      <div class="gallery"> 
-          <?php while($row2 = $result3->fetch_assoc()){               if($row2['code']==$code&&$row['codeimgparcelle']==$row2['codephoto']){ ?> 
-              <img  width="100" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row2['image']); ?> " /> 
-          <?php  }     } ?> 
-      </div> 
-  <?php }else{ ?> 
-      <p class="status error">Image(s) not found...</p> 
-  <?php } 
-
-?>
-</td>
-
-<td>
-<?php
-  
-   
- 
-  echo $row["name"];
-  ?>
-  </td>
-  
   <td>
-  <?php
-
-
-echo $row["description"];
-?>
-</td>
-
-<td>
-<?php
-
-
-echo $row["Exposition"];
-
-?>
-</td>
-
-<td>
-<?php
-
-echo $row["created_at"];
-
-?>
-</td>
-
-
-
-<td>
-
-
-
- <a href="parcellesuppr.php?name=<?php echo $row["name"]?>& imgid=<?php echo $row["codeimgparcelle"]?>"><img src="cross.jpg" alt="pen" width="20"/> </a>
- 
+    <!-- Display images with BLOB data from database -->
+    <?php if($result3->num_rows > 0){ ?> 
+        <div class="gallery"> 
+            <?php while($row2 = $result3->fetch_assoc()){               if($row2['code']==$code&&$row['codeimgparcelle']==$row2['codephoto']){ ?> 
+                <img  width="100" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row2['image']); ?> " /> 
+            <?php  }     } ?> 
+        </div> 
+    <?php }else{ ?> 
+        <p class="status error">Image(s) not found...</p> 
+    <?php } 
+    ?>
   </td>
-
+  <td>
+    <?php
+      echo $row["name"];
+      ?>
+  </td>
+  <td>
+    <?php
+    echo $row["description"];
+    ?>
+  </td>
+  <td>
+    <?php
+    echo $row["Exposition"];
+    ?>
+  </td>
+  <td>
+    <?php
+    echo $row["created_at"];
+    ?>
+  </td>
+  <td>
+    <a href="parcellesuppr.php?name=<?php echo $row["name"]?>& imgid=<?php echo $row["codeimgparcelle"]?>"><img src="cross.jpg" alt="pen" width="20"/> </a>
+  </td>
 </tr>
 
-
-<?php
-    echo "<br>";
-
-   
-
+<?php echo "<br>";
 }
-
 
 }
 /* } */ else {
 //echo "0 results";
 }
 $conn->close();
-
-
-
 ?>
-
 </table>
 
-
-
-
-
-
-
-
 <hr>
-
-
-<p>Depenses:</p>
+<h1>Depenses:</h1>
 
 <table>
 
@@ -412,49 +307,21 @@ $conn->close();
 
 
 <hr>
-
-
-<p>Plantation:</p>
-
+<h1>Plantations:</h1>
 
 <table>
-
 <tr id="parcellehead">
-  <td>
-    edit
-  </td>
-  <td>
-    photo
-  </td>
-  <td>
-    description
-  </td>
-  <td>
-    aliment
-  </td>
-  <td>
-    quantité
-  </td>
-  <td>
-    etat
-  </td>
-  <td>
-    parcelle
-  </td>
-  <td>
-    date planté
-  </td>
-
-  <td>
-    date mise à jour
-  </td>
-
-  <td>
-   recolter
-  </td>
-
-  </tr>
-
+  <td>edit</td>
+  <td>photo</td>
+  <td>description</td>
+  <td>aliment</td>
+  <td>quantité</td>
+  <td>etat</td>
+  <td>parcelle</td>
+  <td>date planté</td>
+  <td>date mise à jour</td>
+  <td>recolter</td>
+</tr>
 <tr>
 
 <?php
@@ -477,9 +344,7 @@ if ($result2->num_rows > 0) {
     <td>
     <?php
   
-  
-  
-    
+
     require 'dbConfig.php'; 
      // Get image data from database 
      $result3 = $conn->query("SELECT image, code, codephoto FROM images ORDER BY id DESC"); 
@@ -495,11 +360,6 @@ if ($result2->num_rows > 0) {
      <?php }else{ ?> 
          <p class="status error">Image(s) not found...</p> 
      <?php } 
-
-
-
-
-
 
 
 /* if($row["code"]==$code){ */
@@ -601,40 +461,19 @@ $conn->close();
 ?>
 
 <hr>
-<p>Traitement:</p>
+<h1>Traitements:</h1>
 
 
 <table>
 
-
-
 <tr id="parcellehead">
-  
-  <td>
-    photo
-  </td>
-  <td>
-    description
-  </td>
-  <td>
-    aliment
-  </td>
-  <td>
-    type
-  </td>
- 
-  <td>
-    parcelle
-  </td>
-  <td>
-    date crée
-  </td>
-
- 
-
-  
-
-  </tr>
+  <td>photo</td>
+  <td>description</td>
+  <td>aliment</td>
+  <td>type</td>
+  <td>parcelle</td>
+  <td>date création</td>
+</tr>
 
 <tr>
 
@@ -755,7 +594,7 @@ $conn->close();
 
 
 <hr>
-<p>Recolte:</p>
+<h1>Recoltes:</h1>
 
 <table>
 
@@ -944,7 +783,7 @@ $conn->close();
 
 <hr>
 
-<p>Note:</p>
+<h1>Notes:</h1>
 
 <table>
 

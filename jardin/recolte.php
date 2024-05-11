@@ -1,7 +1,7 @@
 
 
 <?php
-
+require '../views/header.php';
 session_start();
 
 

@@ -39,7 +39,7 @@ $event=$events->find($_GET['id']);
     e404();
 }
 
-require '../views/header.php';
+require '../views/headercalendar.php';
 
 ?>
 
